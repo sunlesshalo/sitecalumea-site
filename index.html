@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site ca Lumea — site-uri pentru afaceri mici, Cluj</title>
+<meta name="description" content="Site-uri rapide și frumoase pentru afaceri mici din Cluj — restaurante, saloane, servicii. În curând.">
+<meta property="og:title" content="Site ca Lumea">
+<meta property="og:description" content="Site-uri rapide și frumoase pentru afaceri mici din Cluj. În curând.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sitecalumea.ro/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23c2410c'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --ink: #1c1917;
+    --muted: #57534e;
+    --faint: #78716c;
+    --accent: #c2410c;
+    --accent-strong: #9a3412;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1917;
+      --ink: #fafaf9;
+      --muted: #d6d3d1;
+      --faint: #a8a29e;
+      --accent: #fb923c;
+      --accent-strong: #fdba74;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem clamp(1.25rem, 6vw, 4rem);
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+  header .wordmark {
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+  header .wordmark::after { content: "."; color: var(--accent); }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 36rem;
+    padding: 4rem 0;
+    animation: rise 0.7s ease-out both;
+  }
+  .overline {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.25rem;
+  }
+  h1 {
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.1rem, 6.5vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lead {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    max-width: 32rem;
+  }
+  .promise {
+    font-size: 0.95rem;
+    color: var(--faint);
+    margin-bottom: 2.25rem;
+  }
+  .contact {
+    font-size: 1.05rem;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 1px;
+    transition: color 0.15s ease;
+    width: fit-content;
+  }
+  .contact:hover { color: var(--accent-strong); }
+  .contact:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  footer {
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span class="wordmark">Site ca Lumea</span>
+  </header>
+  <main>
+    <p class="overline">Cluj-Napoca · în curând</p>
+    <h1>Facem site-uri <em>ca lumea</em>.</h1>
+    <p class="lead">Site-uri rapide, frumoase și fără bătăi de cap — pentru restaurante, saloane și alte afaceri mici.</p>
+    <p class="promise">Construim întâi. Plătiți doar dacă vă place.</p>
+    <a class="contact" href="mailto:salut@sitecalumea.ro">salut@sitecalumea.ro</a>
+  </main>
+  <footer>
+    <p>© 2026 Site ca Lumea · Cluj-Napoca</p>
+  </footer>
+</body>
+</html>
