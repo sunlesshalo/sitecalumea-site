@@ -101,6 +101,15 @@
     font-size: 0.8rem;
     color: var(--faint);
   }
+  footer a {
+    color: var(--faint);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition: color 0.15s ease;
+  }
+  footer a:hover { color: var(--accent); }
+  footer .legal { margin-top: 0.35rem; font-size: 0.72rem; }
   @keyframes rise {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: none; }
@@ -126,7 +135,8 @@
     <a class="contact" href="mailto:salut@sitecalumea.ro">salut@sitecalumea.ro</a>
   </main>
   <footer>
-    <p>© 2026 Site ca Lumea · Cluj-Napoca</p>
+    <p>© 2026 Site ca Lumea · Cluj-Napoca · <a href="/confidentialitate.html">Confidențialitate</a></p>
+    <p class="legal">Operat de Pine Lines S.R.L. · CUI 40670956 · Reg. Com. J2019000662123 · Str. Horea 88–90, Cluj-Napoca</p>
   </footer>
 </body>
 </html>
