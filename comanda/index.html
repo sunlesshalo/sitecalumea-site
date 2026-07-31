@@ -54,12 +54,24 @@ Aveți întrebări înainte să plătiți, sau vreți ceva ce nu e în listă?
       if (slot) slot.textContent = ' pentru ' + nume;
     }
 
-    // Thread the lead through to Stripe so the receipt and the webhook say
-    // which restaurant paid, without a server on our side.
+    // Thread the lead through to Stripe TWICE, because the two params do
+    // different jobs and only one of them comes back.
+    //
+    //   client_reference_id  reaches Stripe and sits on the Checkout Session,
+    //                        so the dashboard, the receipt and any Stripe
+    //                        webhook know which restaurant paid. It is NOT
+    //                        echoed into the redirect.
+    //   utm_content          Stripe copies UTM params from the payment link
+    //                        into the redirect URL, so this is what survives
+    //                        the round trip and tells /intake which lead it is
+    //                        looking at. Without it that page receives only an
+    //                        opaque session id it cannot resolve.
     var pay = document.querySelector('[data-pay]');
     if (pay && lead) {
       var u = new URL(pay.href);
       u.searchParams.set('client_reference_id', lead);
+      u.searchParams.set('utm_content', lead);
+      u.searchParams.set('utm_source', 'demo');
       pay.href = u.href;
     }
   })();
