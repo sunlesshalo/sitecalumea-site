@@ -20,7 +20,47 @@ Răspundeți la acest email cu domeniul dvs. (dacă aveți unul), pozele și
       meniul din propunere, scrieți-ne doar atât și pornim.
 </p><a class="btn" href="mailto:salut@sitecalumea.ro?subject=Con%C8%9Binut%20pentru%20site" data-astro-cid-y5mq4jyn>
 Trimiteți conținutul pe email
-</a><p class="foot" data-astro-cid-y5mq4jyn>salut@sitecalumea.ro</p></div> <p class="alt" data-astro-cid-z3m4ewb3>
+</a><p class="foot" data-astro-cid-y5mq4jyn>salut@sitecalumea.ro</p></div><script>
+  // This form needs its OWN script. The lead form's handler lives inside
+  // OrderForm.astro, and /intake does not import that component, so without
+  // this the page shipped a form with an `incarcat` field that nothing ever
+  // stamped. Make's bot filter compares `now - incarcat > 2000`, so an empty
+  // value would have rejected every genuine submission from a paying customer.
+  (function () {
+    var form = document.querySelector('[data-intake-form]');
+    if (!form) return;
+
+    var loaded = form.querySelector('[data-loaded-at]');
+    var ref = form.querySelector('[data-referrer]');
+    if (loaded) loaded.value = String(Date.now());
+    if (ref) {
+      // Carries the Stripe session id through from the redirect, which is the
+      // only thread tying this submission to the payment that preceded it.
+      ref.value = (document.referrer || 'direct') + (window.location.search || '');
+    }
+
+    form.addEventListener('submit', function (event) {
+      var action = form.getAttribute('action') || '';
+      if (action.indexOf('REPLACE_ME') !== -1) return;
+      event.preventDefault();
+
+      var errorBox = form.querySelector('[data-form-error]');
+      var button = form.querySelector('button[type=submit]');
+      if (errorBox) errorBox.hidden = true;
+      if (button) { button.disabled = true; button.textContent = 'Se trimite...'; }
+
+      fetch(action, { method: 'POST', body: new FormData(form) })
+        .then(function (res) {
+          if (!res.ok) throw new Error(String(res.status));
+          window.location.href = form.getAttribute('data-success') || '/multumim';
+        })
+        .catch(function () {
+          if (errorBox) errorBox.hidden = false;
+          if (button) { button.disabled = false; button.textContent = 'Trimit conținutul'; }
+        });
+    });
+  })();
+</script> <p class="alt" data-astro-cid-z3m4ewb3>
 V-ați răzgândit? Scrieți-ne la
 <a href="mailto:salut@sitecalumea.ro" data-astro-cid-z3m4ewb3>salut@sitecalumea.ro</a> și primiți avansul
         înapoi integral, fără să ne explicați de ce.

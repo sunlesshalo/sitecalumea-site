@@ -93,7 +93,9 @@ Scrieți-ne pe email
         fetch(action, { method: 'POST', body: new FormData(form) })
           .then(function (res) {
             if (!res.ok) throw new Error(String(res.status));
-            window.location.href = '/multumim';
+            // Per-form, because the intake form posts to the same webhook but
+            // must not land on a page that says "we will build you a demo".
+            window.location.href = form.getAttribute('data-success') || '/multumim';
           })
           .catch(function () {
             if (errorBox) errorBox.hidden = false;
